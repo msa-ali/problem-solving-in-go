@@ -16,6 +16,8 @@ type Task struct {
 	dependencies          []*Task
 	activeDependencyCount int
 	subscribers           []subscriber
+	// send-only channel list
+	channels []chan<- struct{}
 }
 
 var id int = 0
@@ -29,12 +31,20 @@ func New(dependencies []*Task, t taskFunc) *Task {
 	}
 }
 
-func (t *Task) Start() {
+func (t *Task) Start(useChan bool) {
 	t.setActiveDependency()
 	// if Task has dependency
 	if t.activeDependencyCount > 0 {
 		for _, dependency := range t.dependencies {
-			dependency.Subscribe(t.trackDependency)
+			if useChan {
+				ch := dependency.Subscribe(nil, true)
+				go func(ch <-chan struct{}) {
+					<-ch
+					t.trackDependency()
+				}(ch)
+			} else {
+				dependency.Subscribe(t.trackDependency, false)
+			}
 		}
 		fmt.Printf("Task %s has %d dependencies. Waiting for them to get resolved...\n", t.Id, t.activeDependencyCount)
 		return
@@ -67,13 +77,25 @@ func (t *Task) trackDependency() {
 	}
 }
 
-func (t *Task) Subscribe(s subscriber) {
+func (t *Task) Subscribe(s subscriber, useChan bool) <-chan struct{} {
+	if useChan {
+		ch := make(chan struct{})
+		t.channels = append(t.channels, ch)
+		return ch
+	}
 	t.subscribers = append(t.subscribers, s)
+	return nil
 }
 
 func (t *Task) publish() {
 	for _, subscriber := range t.subscribers {
 		subscriber()
+	}
+	if len(t.channels) > 0 {
+		for _, ch := range t.channels {
+			ch <- struct{}{}
+			close(ch)
+		}
 	}
 }
 

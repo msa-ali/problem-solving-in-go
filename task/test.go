@@ -57,10 +57,14 @@ func Test() {
 		fmt.Print(fmt.Sprintf("Running Task %s", t.Id) + "\n")
 		wg.Add(1)
 		go func(t *Task) {
-			t.Subscribe(func() {
+			done := func() {
 				wg.Done()
-			})
-			t.Start()
+			}
+			// t.Subscribe(done, false)
+			t.Start(false)
+			ch := t.Subscribe(nil, true)
+			<-ch
+			done()
 		}(t)
 	}
 
