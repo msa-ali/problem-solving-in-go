@@ -5,3 +5,4 @@ Repository to practice implementing different problems or low level design quest
 1. [Task-Dependency Problem](./task)
 2. [Multithread GREP i.e. mgrep](./mgrep)
 3. [Data Structures](./data-structures)
+4. [Design Patterns](./design-patterns/)

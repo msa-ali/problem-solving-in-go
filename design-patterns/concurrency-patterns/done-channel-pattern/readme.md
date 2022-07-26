@@ -1,0 +1,5 @@
+# The Done Channel Pattern
+
+The done channel pattern provides a way to signal a goroutine that it's time to stop processing. It uses a channel to signal that it's time to exit.
+
+In [SearchData function](./done-channel.go), we declare a channel "done" that contains data of type struct{}. We use an empty struct for the type because the value is unimportant as we never write to this channel, only close it. We launch a goroutine for each searcher passed in. The select statements in the worker goroutines wait for either a write on the result channel(when the searcher function returns) or a read on the done channel. A read on an open channel pauses until there is data available and that a read on a closed channel always returns the zero value for the channel. This means that the case that reads from done will stay paused until done is closed. In searchdata, we read the first value written to result, and then we close done. This signals the goroutines that they should exit, preventing them from leaking.
