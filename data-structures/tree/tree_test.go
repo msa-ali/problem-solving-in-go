@@ -38,3 +38,36 @@ func TestTreeTraversal(t *testing.T) {
 	res = tree.LevelOrder()
 	assert.Equal(t, []int{7, 23, 3, 5, 4, 18, 21}, res)
 }
+
+func TestCompareBT(t *testing.T) {
+	t1 := NewTree[int](7)
+	t1.root.left = NewNode(23)
+	t1.root.right = NewNode(3)
+	t1.root.left.left = NewNode(5)
+	t1.root.left.right = NewNode(4)
+	t1.root.right.left = NewNode(18)
+	t1.root.right.right = NewNode(21)
+	t2 := NewTree[int](7)
+	t2.root.left = NewNode(23)
+	t2.root.right = NewNode(3)
+	t2.root.left.left = NewNode(5)
+	t2.root.left.right = NewNode(4)
+	t2.root.right.left = NewNode(18)
+	t2.root.right.right = NewNode(21)
+	assert.True(t, Compare(t1, t2))
+}
+
+func TestCompareBT2(t *testing.T) {
+	t1 := NewTree[int](7)
+	t1.root.left = NewNode(23)
+	t1.root.left.left = NewNode(5)
+	t1.root.left.right = NewNode(4)
+	t2 := NewTree[int](7)
+	t2.root.left = NewNode(23)
+	t2.root.right = NewNode(3)
+	t2.root.left.left = NewNode(5)
+	t2.root.left.right = NewNode(4)
+	t2.root.right.left = NewNode(18)
+	t2.root.right.right = NewNode(21)
+	assert.False(t, Compare(t1, t2))
+}
