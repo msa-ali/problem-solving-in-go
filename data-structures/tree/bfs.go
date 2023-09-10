@@ -35,3 +35,39 @@ func walkAndSearch[T Number](node *Node[T], value T) bool {
 	}
 	return walkAndSearch(node.right, value)
 }
+
+func (bst *BST[T]) Insert(value T) {
+	n := NewNode(value)
+	if bst.root == nil {
+		bst.root = n
+		return
+	}
+	walkAndInsert(bst.root, value)
+}
+
+/*
+			[8]
+		   / 	\
+		[3]	  	[10]
+		/  \
+	  [1]	[6]
+	       /
+		 [4]
+*/
+func walkAndInsert[T Number](node *Node[T], value T) {
+	if node.value >= value {
+		if node.left == nil {
+			node.left = NewNode(value)
+			return
+		}
+		walkAndInsert(node.left, value)
+		return
+	} else {
+		if node.right == nil {
+			node.right = NewNode(value)
+			return
+		}
+		walkAndInsert(node.right, value)
+		return
+	}
+}
