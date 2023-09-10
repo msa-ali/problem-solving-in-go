@@ -1,4 +1,4 @@
-module github.com/Altamashattari/problem-solving
+module github.com/msa-ali/problem-solving
 
 go 1.18
 

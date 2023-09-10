@@ -1,6 +1,6 @@
 package main
 
-import "github.com/Altamashattari/problem-solving/task"
+import "github.com/msa-ali/problem-solving/task"
 
 func main() {
 	task.Test()
