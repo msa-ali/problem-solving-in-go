@@ -6,4 +6,4 @@ Repository to practice implementing different problems or low level design quest
 2. [Multithread GREP i.e. mgrep](./mgrep)
 3. [Data Structures](./data-structures)
 4. [Design Patterns](./design-patterns/)
-5. [Functional Programming](./fp/)
+5. [Functional Programming](./functional-programming/)
