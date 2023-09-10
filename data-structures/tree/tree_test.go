@@ -71,3 +71,26 @@ func TestCompareBT2(t *testing.T) {
 	t2.root.right.right = NewNode(21)
 	assert.False(t, Compare(t1, t2))
 }
+
+/*
+			[8]
+		   / 	\
+		[3]	  	[10]
+		/  \
+	  [1]	[6]
+	       /
+		 [4]
+*/
+func TestBSTSearch(t *testing.T) {
+	bst := NewBST[int](8)
+	bst.root.left = NewNode(3)
+	bst.root.right = NewNode(10)
+	bst.root.left.left = NewNode(1)
+	bst.root.left.right = NewNode(6)
+	bst.root.left.right.left = NewNode(4)
+	assert.True(t, bst.Find(4))
+	assert.False(t, bst.Find(0))
+	assert.False(t, bst.Find(11))
+	assert.True(t, bst.Find(6))
+	assert.True(t, bst.Find(10))
+}
