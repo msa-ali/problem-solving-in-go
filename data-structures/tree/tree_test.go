@@ -101,6 +101,7 @@ func TestBSTSearch(t *testing.T) {
 	bst.Insert(9)
 	assert.True(t, bst.Find(9))
 	assert.Equal(t, 9, bst.root.right.left.value)
+	// nil map
 	bst = new(BST[int])
 	bst.Insert(10)
 	assert.Equal(t, 10, bst.root.value)
