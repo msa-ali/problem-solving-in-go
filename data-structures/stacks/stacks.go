@@ -52,6 +52,12 @@ func (s *Stack[T]) Pop() (T, error) {
 	return result, nil
 }
 
+func (s *Stack[T]) AsList() (res []T) {
+	res = make([]T, s.Size())
+	copy(res, s.container)
+	return
+}
+
 func (s *Stack[T]) Print() {
 	fmt.Println(s.container)
 }

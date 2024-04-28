@@ -19,6 +19,7 @@ func TestStacks(t *testing.T) {
 	s.Push(3)
 	s.Push(4)
 	s.Push(5)
+	assert.Equal(t, []int{1, 2, 3, 4, 5}, s.AsList())
 	assert.Equal(t, true, s.IsFull())
 	assert.Equal(t, 5, s.Size())
 	err = s.Push(6)
@@ -37,4 +38,15 @@ func TestStacks(t *testing.T) {
 	assert.Equal(t, 0, s.Size())
 	_, err = s.Pop()
 	assert.EqualError(t, err, "stack is empty")
+}
+
+func TestCalculator(t *testing.T) {
+	result := Calculator("4+(15-12)+100")
+	assert.Equal(t, 107, result)
+}
+
+func TestRemoveDuplicates(t *testing.T) {
+	assert.Equal(t, "ay", removeDuplicates("azxxzy"))
+	assert.Equal(t, "abcde", removeDuplicates("abcde"))
+	assert.Equal(t, "", removeDuplicates("aabbccdd"))
 }
