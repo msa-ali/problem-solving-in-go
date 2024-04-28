@@ -1,7 +1,12 @@
 package main
 
-import "github.com/msa-ali/problem-solving/task"
+import (
+	"fmt"
+
+	"github.com/msa-ali/problem-solving/data-structures/stacks"
+)
 
 func main() {
-	task.Test()
+	res := stacks.Calculator("4+(15-12)+100")
+	fmt.Println(res)
 }
