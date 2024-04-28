@@ -50,3 +50,7 @@ func TestRemoveDuplicates(t *testing.T) {
 	assert.Equal(t, "abcde", removeDuplicates("abcde"))
 	assert.Equal(t, "", removeDuplicates("aabbccdd"))
 }
+
+func TestMinRemoveParentheses(t *testing.T) {
+	assert.Equal(t, "(abc)(to)(q)()", minRemoveParentheses("(((abc)(to)((q)()("))
+}
