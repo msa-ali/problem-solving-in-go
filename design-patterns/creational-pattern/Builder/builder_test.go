@@ -7,13 +7,14 @@ import (
 
 func TestBuilderPattern(t *testing.T) {
 	var builder = newNotificationBuilder()
-	builder.SetTitle("New Notification")
-	builder.SetIcon("icon.png")
-	builder.SetSubTitle("Subtitle")
-	builder.SetImage("image.jpg")
-	builder.SetPriority(4)
-	builder.SetMessage("Basic notification")
-	builder.SetType("Alert")
+	builder.
+		SetTitle("New Notification").
+		SetIcon("icon.png").
+		SetSubTitle("Subtitle").
+		SetImage("image.jpg").
+		SetPriority(4).
+		SetMessage("Basic notification").
+		SetType("Alert")
 
 	notif, err := builder.Build()
 	if err != nil {
