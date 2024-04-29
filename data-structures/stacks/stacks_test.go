@@ -54,3 +54,13 @@ func TestRemoveDuplicates(t *testing.T) {
 func TestMinRemoveParentheses(t *testing.T) {
 	assert.Equal(t, "(abc)(to)(q)()", minRemoveParentheses("(((abc)(to)((q)()("))
 }
+
+func TestQueueFromStack(t *testing.T) {
+	q := NewQueue(10)
+	q.push(10)
+	q.push(20)
+	assert.Equal(t, 10, q.peek())
+	assert.Equal(t, 10, q.pop())
+	assert.Equal(t, 20, q.pop())
+	assert.Equal(t, true, q.empty())
+}
