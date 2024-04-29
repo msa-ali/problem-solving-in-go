@@ -64,3 +64,12 @@ func TestQueueFromStack(t *testing.T) {
 	assert.Equal(t, 20, q.pop())
 	assert.Equal(t, true, q.empty())
 }
+
+func TestIsValidParenthesis(t *testing.T) {
+	assert.Equal(t, true, isValidParenthesis("(){}[]"))
+	assert.Equal(t, false, isValidParenthesis("{}[]{}[{}])"))
+	assert.Equal(t, true, isValidParenthesis("(){[{()}]}"))
+	assert.Equal(t, false, isValidParenthesis("))){{}}}]]"))
+	assert.Equal(t, false, isValidParenthesis(")))))"))
+	assert.Equal(t, true, isValidParenthesis("()"))
+}
