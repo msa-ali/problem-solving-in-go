@@ -15,3 +15,7 @@ func TestRescueBoats(t *testing.T) {
 	assert.Equal(t, 2, rescueBoats([]int{2, 1, 1}, 3))
 	assert.Equal(t, 2, rescueBoats([]int{2, 1, 1}, 3))
 }
+
+func TestGasStations(t *testing.T) {
+	assert.Equal(t, 3, gasStationJourney([]int{1, 2, 3, 4, 5}, []int{3, 4, 5, 1, 2}))
+}
