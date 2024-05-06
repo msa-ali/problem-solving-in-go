@@ -1,4 +1,4 @@
-package backtracking
+package greedytechniques
 
 func sum(arr []int) int {
 	sum := 0

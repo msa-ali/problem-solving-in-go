@@ -1,4 +1,4 @@
-package backtracking
+package greedytechniques
 
 /*
 In a single-player jump game, the player starts at one end of a series of squares, with the goal of reaching the last square.
